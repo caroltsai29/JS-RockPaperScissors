@@ -8,8 +8,7 @@ const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissor_div = document.getElementById("s");
 
-const smallUserWord = "user".fontsize(3).sub();
-const smallCompWord = "comp".fontsize(3).sub();
+
 
 function getComputerChoice() {
     const choices = ['r', 'p', 's'];
@@ -24,21 +23,36 @@ function convertToWord(letter) {
 }
 
 function win(userChoice, computerChoice) {
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallCompWord = "comp".fontsize(3).sub();
+    const userChoiceDiv = document.getElementById(userChoice);
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallCompWord} . You win!`;
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallCompWord} . You win! `;
+    userChoiceDiv.classList.add('green-glow');
+    setTimeout(function () { userChoiceDiv.classList.remove('green-glow') }, 300);
 }
 
 function lose(userChoice, computerChoice) {
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallCompWord = "comp".fontsize(3).sub();
+    const userChoiceDiv = document.getElementById(userChoice);
     computerScore++;
-    computerScore_span.innerHTML = computerScore;
     userScore_span.innerHTML = userScore;
-    result_p.innerHTML = `${convertToWord(computerScore)}${smallCompWord} beats ${convertToWord(userScore)}${smallUserWord} . You lost!`;
+    computerScore_span.innerHTML = computerScore;
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallCompWord}. You lost...`;
+    userChoiceDiv.classList.add('red-glow');
+    setTimeout(function () { userChoiceDiv.classList.remove('red-glow') }, 300);
 }
 
 function draw(userChoice, computerChoice) {
-    console.log("draw");
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallCompWord = "comp".fontsize(3).sub();
+    const userChoiceDiv = document.getElementById(userChoice);
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} equals ${convertToWord(computerChoice)}${smallCompWord}. It's a draw...`;
+    userChoiceDiv.classList.add('grey-glow');
+    setTimeout(function () { userChoiceDiv.classList.remove('grey-glow') }, 300);
 }
 
 function game(userChoice) {
@@ -87,8 +101,3 @@ function main() {
 
 
 main();
-
-
-
-
-
